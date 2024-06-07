@@ -1,0 +1,32 @@
+# Directorios de Gradle
+*.iml
+.gradle
+# Archivos de configuración de IntelliJ IDEA
+/local.properties
+/.idea/caches
+/.idea/libraries
+/.idea/modules.xml
+/.idea/workspace.xml
+/.idea/navEditor.xml
+/.idea/assetWizardSettings.xml
+# Archivos de sistema operativo
+.DS_Store
+Thumbs.db
+# Archivos de construcción
+/build
+/captures
+.externalNativeBuild
+.cxx
+# Archivos de configuración local de Android Studio
+local.properties
+# Archivos de registro
+*.log
+# Archivos de empaquetado
+*.jar
+*.war
+*.ear
+# Archivos de sistema operativo y de caché
+.cache/
+.temp/
+# Archivos de entorno
+.env

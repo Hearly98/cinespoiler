@@ -70,24 +70,22 @@
         app:layout_constraintTop_toTopOf="@+id/tv_title"
         app:layout_constraintVertical_bias="0.237" />
 
-    <EditText
-        android:id="@+id/et_DocumentRegister"
+
+    <Spinner
+        android:id="@+id/spinner_Gender"
         android:layout_width="326dp"
         android:layout_height="48dp"
         android:layout_marginTop="16dp"
         android:background="@drawable/bg_border_black"
-        android:ems="10"
-        android:hint="Documento"
-        android:inputType="number"
         android:padding="8dp"
         android:paddingLeft="10dp"
         android:paddingRight="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.517"
+        app:layout_constraintHorizontal_bias="0.482"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/tv_title"
-        app:layout_constraintVertical_bias="0.36" />
+        app:layout_constraintVertical_bias="0.356" />
 
     <EditText
         android:id="@+id/et_DateRegister"

@@ -1,3 +1,4 @@
 <resources>
-    <string name="app_name">cinespoiler</string>
+    <string name="app_name">Cinespoiler</string>
+    <string name="description_img_photo2">Imagen de la cartelera</string>
 </resources>

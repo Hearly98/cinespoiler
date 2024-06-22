@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.cinespoiler.databinding.ItemFoodBinding
 
 class FoodAdapter(private var foods: MutableList<Food>,
                   private var listener: OnClickListener) :
@@ -26,19 +27,19 @@ class FoodAdapter(private var foods: MutableList<Food>,
         with(holder) {
             setListener(food)
             binding.tvName.text = food.name
-            binding.tvName.text = food.price
+            binding.tvPrice.text = food.price.toString()
             binding.cbFavorite.isChecked = food.isFavorite
         }
     }
 
     override fun getItemCount(): Int = foods.size
-    fun add(storeEntity: Food) {
-        foods.add(storeEntity)
+    fun add(food: Food) {
+        foods.add(food)
         notifyDataSetChanged()
     }
 
-    fun setStores(stores: MutableList<Food>) {
-        this.foods = stores
+    fun setFoods(foods: MutableList<Food>) {
+        this.foods = foods
         notifyDataSetChanged()
     }
 
@@ -50,32 +51,25 @@ class FoodAdapter(private var foods: MutableList<Food>,
         }
     }
 
-    fun delete(food: Food) {
-        val index = foods.indexOf(food)
-        if (index != -1) {
-            foods.removeAt(index)
-            notifyItemRemoved(index)
-        }
-    }
 
     // Clase interna inner class
     // Heredando de recycler
     inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         // Se debe sincronizar en graddle sino no aparece
         // Creamos la variable para que reciba de la vista
-        val binding = ItemTiendaBinding.bind(view)
+        val binding = ItemFoodBinding.bind(view)
 
         fun setListener(food: Food) {
             with(binding.root) {
-                setOnClickListener { listener.onClick(storeEntity) }
+                setOnClickListener { listener.onClick(food) }
                 setOnLongClickListener {
-                    listener.onDeleteStore(storeEntity)
+                    listener.onDeleteStore(food)
                     true
                 }
             }
 
             binding.cbFavorite.setOnClickListener {
-                listener.onFavoriteStore(storeEntity)
+                listener.onFavoriteFood(food)
             }
         }
 

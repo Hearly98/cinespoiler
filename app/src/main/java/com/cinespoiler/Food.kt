@@ -7,9 +7,8 @@ import androidx.room.PrimaryKey
 data class Food (
     @PrimaryKey(autoGenerate = true )
     val id : Int = 0,
-    val name : String,
-    val description : String,
-    val price: Int = 0,
+    var name : String,
+    var price: Int = 0,
     var isFavorite: Boolean = false
 )
 

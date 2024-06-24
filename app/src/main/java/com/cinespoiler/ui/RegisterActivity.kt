@@ -2,73 +2,140 @@ package com.cinespoiler.ui
 
 import android.content.Intent
 import android.os.Bundle
-import android.widget.ArrayAdapter
-import android.widget.Button
-import android.widget.EditText
-import android.widget.Spinner
-import android.widget.Toast
+import android.view.View
+import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import com.cinespoiler.Gender
 import com.cinespoiler.MainActivity
 import com.cinespoiler.R
+
 import com.cinespoiler.dao.UserDao
 import com.cinespoiler.model.User
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import java.text.SimpleDateFormat
-import java.util.Date
-import java.util.Locale
+import java.util.*
 
-class RegisterActivity: AppCompatActivity() {
+class RegisterActivity : AppCompatActivity() {
     private lateinit var userDao: UserDao
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_register)
 
-        // Aquí accedemos a la base de datos desde UserApplication
         userDao = UserApplication.database.userDao()
 
+        setupGenderSpinner()
+        setupRegisterButton()
+    }
+
+    private fun setupGenderSpinner() {
         val spinnerGender: Spinner = findViewById(R.id.spinner_Gender)
-        val adapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, Gender.values())
+
+        val genderList = mutableListOf("Seleccione su género")
+        genderList.addAll(Gender.values().map { it.name })
+
+        val adapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, genderList)
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         spinnerGender.adapter = adapter
+    }
 
+    private fun setupRegisterButton() {
         val nameEditText: EditText = findViewById(R.id.et_NameRegister)
         val birthdateEditText: EditText = findViewById(R.id.et_DateRegister)
         val emailEditText: EditText = findViewById(R.id.et_EmailRegister)
         val passwordEditText: EditText = findViewById(R.id.et_PasswordRegister)
         val registerButton: Button = findViewById(R.id.btn_register)
 
+        val nameErrorTextView: TextView = findViewById(R.id.tv_error_name)
+        val genderErrorTextView: TextView = findViewById(R.id.tv_error_gender)
+        val birthdateErrorTextView: TextView = findViewById(R.id.tv_error_birthdate)
+        val emailErrorTextView: TextView = findViewById(R.id.tv_error_email)
+        val passwordErrorTextView: TextView = findViewById(R.id.tv_error_password)
+
         registerButton.setOnClickListener {
             val name = nameEditText.text.toString()
-            val gender = spinnerGender.selectedItem as Gender
-            val birthdate = parseDate(birthdateEditText.text.toString())
+            val gender = findViewById<Spinner>(R.id.spinner_Gender).selectedItem.toString()
+            val birthdate = birthdateEditText.text.toString()
             val email = emailEditText.text.toString()
             val password = passwordEditText.text.toString()
 
-            val user = User(0, name, gender, birthdate, email, password)
+            var isValid = validateInput(
+                name, gender, birthdate, email, password,
+                nameErrorTextView, genderErrorTextView, birthdateErrorTextView, emailErrorTextView, passwordErrorTextView
+            )
 
-            lifecycleScope.launch(Dispatchers.IO) {
-                try {
-                    userDao.insert(user)
-                    withContext(Dispatchers.Main) {
-                        // Mostrar un Toast en el hilo principal para indicar éxito
-                        Toast.makeText(this@RegisterActivity, "Usuario registrado exitosamente", Toast.LENGTH_SHORT).show()
-                        // Limpiar campos o realizar otras acciones en la UI si es necesario
-                        clearFields(nameEditText, birthdateEditText, emailEditText, passwordEditText)
-                        navigateLogin()
-                    }
-                    // Imprimir todos los usuarios en la terminal
-                    printAllUsers()
+            if (isValid) {
+                registerUser(name, gender, birthdate, email, password, nameEditText, birthdateEditText, emailEditText, passwordEditText)
+            }
+        }
+    }
 
-                } catch (e: Exception) {
-                    withContext(Dispatchers.Main) {
-                        // Mostrar un Toast en el hilo principal para indicar error
-                        Toast.makeText(this@RegisterActivity, "Error al registrar el usuario: ${e.message}", Toast.LENGTH_SHORT).show()
-                    }
+    private fun validateInput(
+        name: String, gender: String, birthdate: String, email: String, password: String,
+        nameErrorTextView: TextView, genderErrorTextView: TextView, birthdateErrorTextView: TextView,
+        emailErrorTextView: TextView, passwordErrorTextView: TextView
+    ): Boolean {
+        var isValid = true
+
+        if (name.isEmpty()) {
+            nameErrorTextView.visibility = View.VISIBLE
+            isValid = false
+        } else {
+            nameErrorTextView.visibility = View.GONE
+        }
+
+        if (gender == "Seleccione su género") {
+            genderErrorTextView.visibility = View.VISIBLE
+            isValid = false
+        } else {
+            genderErrorTextView.visibility = View.GONE
+        }
+
+        if (birthdate.isEmpty()) {
+            birthdateErrorTextView.visibility = View.VISIBLE
+            isValid = false
+        } else {
+            birthdateErrorTextView.visibility = View.GONE
+        }
+
+        if (email.isEmpty()) {
+            emailErrorTextView.visibility = View.VISIBLE
+            isValid = false
+        } else {
+            emailErrorTextView.visibility = View.GONE
+        }
+
+        if (password.isEmpty()) {
+            passwordErrorTextView.visibility = View.VISIBLE
+            isValid = false
+        } else {
+            passwordErrorTextView.visibility = View.GONE
+        }
+
+        return isValid
+    }
+
+    private fun registerUser(
+        name: String, gender: String, birthdate: String, email: String, password: String,
+        nameEditText: EditText, birthdateEditText: EditText, emailEditText: EditText, passwordEditText: EditText
+    ) {
+        val user = User(0, name, Gender.valueOf(gender), parseDate(birthdate), email, password)
+
+        lifecycleScope.launch(Dispatchers.IO) {
+            try {
+                userDao.insert(user)
+                withContext(Dispatchers.Main) {
+                    Toast.makeText(this@RegisterActivity, "Usuario registrado exitosamente", Toast.LENGTH_SHORT).show()
+                    clearFields(nameEditText, birthdateEditText, emailEditText, passwordEditText)
+                    navigateLogin()
+                }
+                printAllUsers()
+            } catch (e: Exception) {
+                withContext(Dispatchers.Main) {
+                    Toast.makeText(this@RegisterActivity, "Error al registrar el usuario: ${e.message}", Toast.LENGTH_SHORT).show()
                 }
             }
         }
@@ -90,6 +157,7 @@ class RegisterActivity: AppCompatActivity() {
             editText.text.clear()
         }
     }
+
     private suspend fun printAllUsers() {
         val users = userDao.getAllUsers()
         withContext(Dispatchers.IO) {

@@ -19,10 +19,10 @@ class HomeActivity: AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?){
         super.onCreate(savedInstanceState)
         mBinding = ActivityMainBinding.inflate(layoutInflater)
-        setContentView(R.layout.activity_main)
-        }
-    setUpNavMenu()
+        setContentView(mBinding.root)
+        setUpNavMenu()
     }
+
     private fun setUpNavMenu(){
         var mFragmentManager = supportFragmentManager
         val homeFragment = HomeFragment()
@@ -30,8 +30,7 @@ class HomeActivity: AppCompatActivity() {
         val moviesFragment = MoviesFragment()
         val profileFragment = ProfileFragment()
         mActiveFragment = homeFragment
-        //Poner el menu pero invertido
-        //Crear de derecha a izquierda las opciones del menú
+
         mFragmentManager.beginTransaction()
             .add(R.id.hostFragment,
                 profileFragment, ProfileFragment::class.java.name)
@@ -81,4 +80,5 @@ class HomeActivity: AppCompatActivity() {
 
         }
     }
-}
+    }
+

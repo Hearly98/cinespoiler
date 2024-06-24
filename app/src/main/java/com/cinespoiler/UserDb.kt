@@ -1,6 +1,5 @@
 package com.cinespoiler
 
-import Converters
 import androidx.room.Database
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverters

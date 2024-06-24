@@ -12,7 +12,7 @@
     <item
         android:id="@+id/i_dulceria"
         android:title="Dulceria"
-        android:icon="@drawable/ic_home"/>
+        android:icon="@drawable/ic_dulceria"/>
     <item
         android:id="@+id/i_user"
         android:title="Usuario"

@@ -18,7 +18,7 @@
         app:showAsAction="never"
         android:icon="@drawable/ic_dulceria"/>
     <item
-        android:id="@+id/i_user"
+        android:id="@+id/i_profile"
         android:title="Usuario"
         app:showAsAction="never"
         android:icon="@drawable/ic_user"/>

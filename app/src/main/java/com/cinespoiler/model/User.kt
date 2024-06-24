@@ -1,8 +1,9 @@
-package com.cinespoiler
+package com.cinespoiler.model
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import com.cinespoiler.Gender
 import java.util.Date
 
 @Entity(tableName = "users")

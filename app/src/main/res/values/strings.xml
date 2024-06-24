@@ -2,4 +2,6 @@
     <string name="app_name">cinespoiler</string>
     <string name="description_img_photo">Imagen de la comida</string>
     <string name="description_store_add">Crear tienda</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

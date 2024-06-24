@@ -1,9 +1,11 @@
-package com.cinespoiler
+package com.cinespoiler.ui
 
-import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.GridLayoutManager
+import com.cinespoiler.adapter.FoodAdapter
+import com.cinespoiler.OnClickListener
 import com.cinespoiler.databinding.ActivityFoodBinding
+import com.cinespoiler.model.Food
 import java.util.concurrent.LinkedBlockingQueue
 
 class FoodActivity : AppCompatActivity(), OnClickListener {
@@ -22,8 +24,6 @@ class FoodActivity : AppCompatActivity(), OnClickListener {
             val foods = FoodApplication.database.foodDao().getAllFoods()
             queue.add(foods)
         }.start()
-
-        // mAdapter.setStores(stores)
         mAdapter.setFoods(queue.take())
     }
     override fun onClick(food: Food) {

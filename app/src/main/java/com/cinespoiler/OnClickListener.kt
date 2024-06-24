@@ -1,5 +1,7 @@
 package com.cinespoiler
 
+import com.cinespoiler.model.Food
+
 interface OnClickListener {
 
 

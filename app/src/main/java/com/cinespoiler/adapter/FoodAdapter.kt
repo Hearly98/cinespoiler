@@ -1,14 +1,18 @@
-package com.cinespoiler
+package com.cinespoiler.adapter
 
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.cinespoiler.OnClickListener
+import com.cinespoiler.R
 import com.cinespoiler.databinding.ItemFoodBinding
+import com.cinespoiler.model.Food
 
 class FoodAdapter(private var foods: MutableList<Food>,
-                  private var listener: OnClickListener) :
+                  private var listener: OnClickListener
+) :
     RecyclerView.Adapter<FoodAdapter.ViewHolder>() {
 
     private lateinit var mContext: Context

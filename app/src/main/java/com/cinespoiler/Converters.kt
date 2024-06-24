@@ -1,5 +1,6 @@
+package com.cinespoiler
+
 import androidx.room.TypeConverter
-import com.cinespoiler.Gender
 import java.util.Date
 
 class Converters {

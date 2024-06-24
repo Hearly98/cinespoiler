@@ -1,4 +1,4 @@
-package com.cinespoiler
+package com.cinespoiler.model
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey

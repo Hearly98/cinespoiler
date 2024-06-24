@@ -1,9 +1,11 @@
-package com.cinespoiler
+package com.cinespoiler.ui
 
 import android.app.Application
 import androidx.room.Room
+import com.cinespoiler.dao.UserDb
 
 class UserApplication : Application() {
+
     companion object {
         lateinit var database: UserDb
     }
@@ -13,7 +15,7 @@ class UserApplication : Application() {
         database = Room.databaseBuilder(
             applicationContext,
             UserDb::class.java,
-            "Cinespoiler"
+            "cinespoiler"
         ).build()
     }
 }

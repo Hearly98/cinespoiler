@@ -49,7 +49,7 @@ class HomeActivity: AppCompatActivity() {
             .commit()
 
 
-        mBinding.btnv.setOnNavigationItemReselectedListener {
+        mBinding.btnv.setOnNavigationItemSelectedListener {
             when(it.itemId){
                 R.id.i_home -> {
                     mFragmentManager.beginTransaction().hide(mActiveFragment)

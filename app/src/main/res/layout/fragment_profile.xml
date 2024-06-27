@@ -1,14 +1,183 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white"
     tools:context=".ProfileFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/barLayoutProfile"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="Profile" />
+        android:layout_height="wrap_content">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            app:layout_scrollFlags="scroll|enterAlways">
+
+            <Button
+                android:id="@+id/btnRetornar"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_margin="10dp"
+                android:background="@drawable/chevron_left"
+                android:padding="10dp" />
+
+            <TextView
+                android:id="@+id/cinema_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingStart="16dp"
+                android:text="Perfil"
+                android:layout_gravity="center"
+                android:textColor="@color/black"
+                android:textSize="25sp"
+                android:textStyle="bold" />
+
+        </androidx.appcompat.widget.Toolbar>
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp"
+        android:layout_marginTop="?attr/actionBarSize">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_horizontal">
+
+            <ImageView
+                android:id="@+id/imgProfile"
+                android:layout_width="170dp"
+                android:layout_height="187dp"
+                android:src="@drawable/ic_user" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="16dp">
+
+            <TextView
+                android:id="@+id/tvNombreProfile"
+                android:layout_width="58dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center|top"
+                android:layout_weight="1"
+                android:textSize="14dp"
+                android:text="Nombre Completo" />
+            <EditText
+                android:id="@+id/etNombreProfile"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="3"
+                android:textSize="14dp"
+                android:hint="Ingrese su nombre" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="16dp">
+
+            <TextView
+                android:id="@+id/tvDniProfile"
+                android:layout_width="57dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center|top"
+                android:layout_weight="1"
+                android:textSize="14dp"
+                android:text="Dni" />
+            <EditText
+                android:id="@+id/etDniProfile"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="3"
+                android:textSize="14dp"
+                android:hint="Ingrese su DNI" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="16dp">
+
+            <TextView
+                android:id="@+id/tvEmailProfile"
+                android:layout_width="58dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center|top"
+                android:layout_weight="1"
+                android:textSize="14dp"
+                android:text="Email" />
+            <EditText
+                android:id="@+id/etEmailProfile"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="3"
+                android:textSize="14dp"
+                android:hint="Ingrese su email" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="16dp">
+
+            <TextView
+                android:id="@+id/tvFechNacProfile"
+                android:layout_width="57dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_weight="1"
+                android:text="Fecha de Nacimiento"
+                android:textSize="14dp" />
+            <EditText
+                android:id="@+id/etFechNacProfile"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:textSize="14dp"
+                android:layout_weight="3"
+                android:hint="Ingrese su fecha de nacimiento" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="16dp">
+
+            <TextView
+                android:id="@+id/tvPasswordProfile"
+                android:layout_width="57dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_weight="1"
+                android:text="Contraseña"
+                android:textSize="14dp" />
+            <EditText
+                android:id="@+id/etPasswordProfile"
+                android:layout_width="0dp"
+                android:textSize="14dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="3"
+                android:hint="Ingrese su contraseña"
+                android:inputType="textPassword" />
+        </LinearLayout>
+
+    </LinearLayout>
 
 </FrameLayout>

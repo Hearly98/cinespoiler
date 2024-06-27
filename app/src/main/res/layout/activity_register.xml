@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -73,6 +74,15 @@
         app:layout_constraintTop_toTopOf="@+id/tv_title"
         app:layout_constraintVertical_bias="0.237" />
 
+    <TextView
+        android:id="@+id/tv_error_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@android:color/holo_red_dark"
+        android:visibility="gone"
+        android:text="Por favor, ingrese su nombre y apellidos."
+        app:layout_constraintTop_toBottomOf="@id/et_NameRegister"
+        app:layout_constraintStart_toStartOf="@id/et_NameRegister" />
 
     <Spinner
         android:id="@+id/spinner_Gender"
@@ -89,6 +99,16 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/tv_title"
         app:layout_constraintVertical_bias="0.356" />
+
+    <TextView
+        android:id="@+id/tv_error_gender"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@android:color/holo_red_dark"
+        android:visibility="gone"
+        android:text="Por favor, seleccione su género."
+        app:layout_constraintTop_toBottomOf="@id/spinner_Gender"
+        app:layout_constraintStart_toStartOf="@id/spinner_Gender" />
 
     <EditText
         android:id="@+id/et_DateRegister"
@@ -109,6 +129,16 @@
         app:layout_constraintTop_toTopOf="@+id/tv_title"
         app:layout_constraintVertical_bias="0.479" />
 
+    <TextView
+        android:id="@+id/tv_error_birthdate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@android:color/holo_red_dark"
+        android:visibility="gone"
+        android:text="Por favor, ingrese su fecha de nacimiento."
+        app:layout_constraintTop_toBottomOf="@id/et_DateRegister"
+        app:layout_constraintStart_toStartOf="@id/et_DateRegister" />
+
     <EditText
         android:id="@+id/et_EmailRegister"
         android:layout_width="328dp"
@@ -116,7 +146,7 @@
         android:layout_marginTop="16dp"
         android:background="@drawable/bg_border_black"
         android:ems="10"
-        android:hint="Correo electronico"
+        android:hint="Correo electrónico"
         android:inputType="textEmailAddress"
         android:padding="8dp"
         android:paddingLeft="10dp"
@@ -127,6 +157,16 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/tv_title"
         app:layout_constraintVertical_bias="0.598" />
+
+    <TextView
+        android:id="@+id/tv_error_email"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@android:color/holo_red_dark"
+        android:visibility="gone"
+        android:text="Por favor, ingrese su correo electrónico."
+        app:layout_constraintTop_toBottomOf="@id/et_EmailRegister"
+        app:layout_constraintStart_toStartOf="@id/et_EmailRegister" />
 
     <EditText
         android:id="@+id/et_PasswordRegister"
@@ -147,6 +187,16 @@
         app:layout_constraintTop_toTopOf="@+id/tv_title"
         app:layout_constraintVertical_bias="0.717" />
 
+    <TextView
+        android:id="@+id/tv_error_password"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@android:color/holo_red_dark"
+        android:visibility="gone"
+        android:text="Por favor, ingrese su contraseña."
+        app:layout_constraintTop_toBottomOf="@id/et_PasswordRegister"
+        app:layout_constraintStart_toStartOf="@id/et_PasswordRegister" />
+
     <Button
         android:id="@+id/btn_register"
         android:layout_width="330dp"
@@ -156,23 +206,11 @@
         android:text="Registrarse"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.543"
+        app:layout_constraintHorizontal_bias="0.514"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.86" />
+        app:layout_constraintTop_toTopOf="@+id/tv_title"
+        app:layout_constraintVertical_bias="0.895" />
 
-    <TextView
-        android:id="@+id/tv_TermsCond"
-        android:layout_width="288dp"
-        android:layout_height="28dp"
-        android:text="Al hacer click en registrarse, acepta nuestros Término de servicio y Politica de privacidad"
-        android:textAlignment="textStart"
-        android:textSize="10sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.934" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

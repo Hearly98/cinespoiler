@@ -1,22 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="@dimen/item_card_height"
+    android:layout_width="wrap_content"
+    android:layout_height="228dp"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_marginTop="@dimen/common_padding_min"
     android:layout_marginHorizontal="@dimen/common_padding_min"
   >
 
-<androidx.constraintlayout.widget.ConstraintLayout
-android:layout_width="match_parent"
-android:layout_height="match_parent"/>
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
 
 
     <ImageView
         android:id="@+id/imgPhoto2"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_width="187dp"
+        android:layout_height="228dp"
         android:contentDescription="@string/description_img_cartelera"
         android:background="@color/gray"
         app:layout_constraintStart_toStartOf="parent"

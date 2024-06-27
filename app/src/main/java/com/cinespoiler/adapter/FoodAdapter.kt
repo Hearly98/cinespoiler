@@ -30,7 +30,7 @@ class FoodAdapter(private var foods: MutableList<Food>,
 
         with(holder) {
             setListener(food)
-            binding.tvName.text = food.name
+            binding.tvNameFood.text = food.name
             binding.tvPrice.text = food.price.toString()
             binding.cbFavorite.isChecked = food.isFavorite
         }

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <products>
+        <product>
+            <name>Canchita Salada</name>
+            <price>3.50</price>
+        </product>
+        <product>
+            <name>Canchita Dulce</name>
+            <price>4.00</price>
+        </product>
+        <product>
+            <name>Canchita Picante</name>
+            <price>4.50</price>
+        </product>
+        <product>
+            <name>Canchita Mixta</name>
+            <price>5.00</price>
+        </product>
+    </products>
+</resources>

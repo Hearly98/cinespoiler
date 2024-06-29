@@ -1,15 +1,16 @@
 package com.cinespoiler.model
 
-import androidx.room.Entity
-import androidx.room.PrimaryKey
+import com.google.firebase.database.IgnoreExtraProperties
 
-@Entity(tableName = "Food")
+@IgnoreExtraProperties
 data class Food (
-    @PrimaryKey(autoGenerate = true )
     val id : Int = 0,
     var name : String,
     var price: Int = 0,
-    var isFavorite: Boolean = false
+    val description: String = "",
+    val imageUrl: String = "",
+    var isFavorite: Boolean = false,
+    var quantity: Int = 0
 )
 
 

@@ -7,7 +7,7 @@ import androidx.fragment.app.FragmentManager
 import com.cinespoiler.ui.fragments.FoodFragment
 import com.cinespoiler.ui.fragments.HomeFragment
 import com.cinespoiler.ui.fragments.MoviesFragment
-import com.cinespoiler.ProfileFragment
+import com.cinespoiler.ui.fragments.ProfileFragment
 import com.cinespoiler.R
 import com.cinespoiler.databinding.ActivityMainBinding
 

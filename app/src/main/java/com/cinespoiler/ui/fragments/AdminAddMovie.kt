@@ -5,10 +5,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import com.cinespoiler.ui.fragments.FoodFragment
-import com.cinespoiler.ui.fragments.HomeFragment
-import com.cinespoiler.ui.fragments.MoviesFragment
-import com.cinespoiler.ProfileFragment
 import com.cinespoiler.R
 
 class AdminAddMovie : Fragment() {

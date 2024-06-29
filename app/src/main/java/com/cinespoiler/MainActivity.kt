@@ -21,20 +21,28 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_login)
 
-        userDao = UserApplication.database.userDao()
+        val sharedPreferences = getSharedPreferences("user_prefs", MODE_PRIVATE)
+        val userId = sharedPreferences.getInt("user_id", -1)
 
-        val linkRegister = findViewById<TextView>(R.id.registerTextView)
-        linkRegister.setOnClickListener {
-            navigateToRegister()
-        }
+        if (userId != -1) {
+            navigateToHome()
+        } else {
+            setContentView(R.layout.activity_login)
+            userDao = UserApplication.database.userDao()
 
-        val btnLogin = findViewById<Button>(R.id.btn_Login)
-        btnLogin.setOnClickListener {
-            loginValidation()
+            val linkRegister = findViewById<TextView>(R.id.registerTextView)
+            linkRegister.setOnClickListener {
+                navigateToRegister()
+            }
+
+            val btnLogin = findViewById<Button>(R.id.btn_Login)
+            btnLogin.setOnClickListener {
+                loginValidation()
+            }
         }
     }
+
 
     private fun navigateToRegister() {
         val intent = Intent(this, RegisterActivity::class.java)
@@ -63,6 +71,17 @@ class MainActivity : AppCompatActivity() {
 
             withContext(Dispatchers.Main) {
                 if (user != null) {
+
+                    val sharedPreferences = getSharedPreferences("user_prefs", MODE_PRIVATE)
+                    val editor = sharedPreferences.edit()
+                    editor.putInt("user_id", user.id)
+                    editor.putString("user_name", user.name)
+                    editor.putString("user_email", user.email)
+                    editor.putString("user_gender", user.gender.name)
+                    editor.putString("user_birthdate", user.birthdate.toString())
+                    editor.putString("user_password", user.password)
+                    editor.apply()
+
                     Toast.makeText(this@MainActivity, "Inicio de sesión exitoso", Toast.LENGTH_SHORT).show()
                     navigateToHome()
                 } else {
@@ -77,4 +96,16 @@ class MainActivity : AppCompatActivity() {
         startActivity(intent)
         finish()
     }
+
+    private fun logout() {
+        val sharedPreferences = getSharedPreferences("user_prefs", MODE_PRIVATE)
+        val editor = sharedPreferences.edit()
+        editor.clear()
+        editor.apply()
+
+        val intent = Intent(this, MainActivity::class.java)
+        startActivity(intent)
+        finish()
+    }
+
 }

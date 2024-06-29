@@ -8,7 +8,7 @@ import com.cinespoiler.databinding.ActivityFoodBinding
 import com.cinespoiler.model.Food
 import java.util.concurrent.LinkedBlockingQueue
 
-class FoodActivity : AppCompatActivity(), OnClickListener {
+abstract  class FoodActivity : AppCompatActivity(), OnClickListener {
 
     private lateinit var mBinding: ActivityFoodBinding
 
@@ -16,12 +16,12 @@ class FoodActivity : AppCompatActivity(), OnClickListener {
 
     private lateinit var mGridLayout: GridLayoutManager
 
-
+/*
 
     private fun getFoods() {
         val queue = LinkedBlockingQueue<MutableList<Food>>()
         Thread {
-            val foods = FoodApplication.database.foodDao().getAllFoods()
+           val foods = FoodApplication.database.foodDao().getAllFoods()
             queue.add(foods)
         }.start()
         mAdapter.setFoods(queue.take())
@@ -42,6 +42,6 @@ class FoodActivity : AppCompatActivity(), OnClickListener {
     override fun onDeleteStore(food: Food) {
         TODO("Not yet implemented")
     }
-
+*/
 
 }

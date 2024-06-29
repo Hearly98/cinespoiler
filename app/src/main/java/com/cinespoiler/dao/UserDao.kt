@@ -6,7 +6,7 @@ import androidx.room.Insert
 import androidx.room.Query
 import androidx.room.Update
 import com.cinespoiler.model.User
-
+/*
 @Dao
 interface UserDao {
     @Query("SELECT * FROM users")
@@ -27,3 +27,4 @@ interface UserDao {
     @Delete
      fun delete(user: User)
 }
+*/

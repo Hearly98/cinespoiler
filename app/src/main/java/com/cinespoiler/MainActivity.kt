@@ -5,25 +5,21 @@ import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
-import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.lifecycleScope
 import com.cinespoiler.ui.client.HomeActivity
 import com.cinespoiler.ui.RegisterActivity
-import com.cinespoiler.dao.UserDao
-import com.cinespoiler.ui.UserApplication
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
+import com.cinespoiler.ui.client.ProviderType
+import com.google.firebase.auth.FirebaseAuth
+
 
 class MainActivity : AppCompatActivity() {
-    private lateinit var userDao: UserDao
+    private lateinit var auth: FirebaseAuth
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
 
-        userDao = UserApplication.database.userDao()
 
         val linkRegister = findViewById<TextView>(R.id.registerTextView)
         linkRegister.setOnClickListener {
@@ -32,9 +28,14 @@ class MainActivity : AppCompatActivity() {
 
         val btnLogin = findViewById<Button>(R.id.btn_Login)
         btnLogin.setOnClickListener {
-            loginValidation()
+            val bundle = intent.extras
+            val email = bundle?.getString("email")
+            val provider = bundle?.getString("provider")
+            setUp(email?: "", provider ?: "")
         }
     }
+
+
 
     private fun navigateToRegister() {
         val intent = Intent(this, RegisterActivity::class.java)
@@ -42,39 +43,40 @@ class MainActivity : AppCompatActivity() {
         finish()
     }
 
-    private fun loginValidation() {
+    private fun setUp(email: String, provider: String) {
+        title = "Inicio"
         val emailEditText: EditText = findViewById(R.id.et_EmailLogin)
         val passwordEditText: EditText = findViewById(R.id.et_PasswordLogin)
-        val email = emailEditText.text.toString()
-        val password = passwordEditText.text.toString()
+        val btn_login = findViewById<Button>(R.id.btn_Login)
 
-        if (email.isEmpty()) {
-            Toast.makeText(this, "El campo de correo electrónico está vacío", Toast.LENGTH_SHORT).show()
-            return
-        }
-
-        if (password.isEmpty()) {
-            Toast.makeText(this, "El campo de contraseña está vacío", Toast.LENGTH_SHORT).show()
-            return
-        }
-
-        lifecycleScope.launch(Dispatchers.IO) {
-            val user = userDao.login(email, password)
-
-            withContext(Dispatchers.Main) {
-                if (user != null) {
-                    Toast.makeText(this@MainActivity, "Inicio de sesión exitoso", Toast.LENGTH_SHORT).show()
-                    navigateToHome()
-                } else {
-                    Toast.makeText(this@MainActivity, "Correo o contraseña incorrecta", Toast.LENGTH_SHORT).show()
-                }
+        btn_login.setOnClickListener {
+            if(emailEditText.text.isNotEmpty() && passwordEditText.text.isNotEmpty()){
+                FirebaseAuth.getInstance().signInWithEmailAndPassword(emailEditText.text.toString(), passwordEditText.text.toString())
+                    .addOnCompleteListener {
+                        if(it.isSuccessful){
+                            navigateToHome(it.result?.user?.email?: "", ProviderType.BASIC)
+                        }else{
+                            showAlert()
+                        }
+                    }
             }
         }
     }
 
-    private fun navigateToHome() {
-        val intent = Intent(this, HomeActivity::class.java)
-        startActivity(intent)
+    private fun showAlert() {
+        val builder = AlertDialog.Builder(this)
+        builder.setTitle("Error")
+        builder.setMessage("Se ha producido un error autenticando al usuario")
+        builder.setPositiveButton("Aceptar", null)
+        val dialog: AlertDialog = builder.create()
+        dialog.show()
+    }
+    private fun navigateToHome(email: String, provider: ProviderType){
+        val homeIntent = Intent(this, HomeActivity::class.java).apply {
+            putExtra("email", email)
+            putExtra("provider", provider)
+        }
+        startActivity(homeIntent)
         finish()
     }
 }

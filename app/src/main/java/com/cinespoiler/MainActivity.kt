@@ -21,7 +21,6 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
-
         sharedPreferences = getSharedPreferences("user_prefs", MODE_PRIVATE)
         val userId = sharedPreferences.getString("user_id", null)
 
@@ -31,6 +30,8 @@ class MainActivity : AppCompatActivity() {
             setupLogin()
         }
     }
+
+
 
     private fun setupLogin() {
         title = "Inicio de sesión"

@@ -12,7 +12,7 @@
         android:layout_height="124dp">
 
         <ImageView
-            android:id="@+id/imgPhoto"
+            android:id="@+id/imgPhotoFood"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:background="@color/gray"
@@ -35,12 +35,12 @@
             android:padding="@dimen/common_padding_min"
             android:textAppearance="?attr/textAppearanceBody2"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@id/tvPrice"
-            app:layout_constraintStart_toEndOf="@+id/imgPhoto"
+            app:layout_constraintEnd_toStartOf="@id/tvPriceFood"
+            app:layout_constraintStart_toEndOf="@+id/imgPhotoFood"
             tools:text="Nombre de la golosina" />
 
         <TextView
-            android:id="@+id/tvDescription"
+            android:id="@+id/tvDescriptionFood"
             android:layout_width="200dp"
             android:layout_height="wrap_content"
             android:layout_marginBottom="56dp"
@@ -50,12 +50,12 @@
             android:padding="@dimen/common_padding_min"
             android:textAppearance="?attr/textAppearanceBody2"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@id/tvPrice"
-            app:layout_constraintStart_toEndOf="@+id/imgPhoto"
+            app:layout_constraintEnd_toStartOf="@id/tvPriceFood"
+            app:layout_constraintStart_toEndOf="@+id/imgPhotoFood"
             tools:text="Descripción de la golosina" />
 
         <TextView
-            android:id="@+id/tvPrice"
+            android:id="@+id/tvPriceFood"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="16dp"
@@ -100,9 +100,11 @@
             android:inputType="number"
             android:textSize="14dp"
             app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintHorizontal_bias="0.716"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.92"
-            tools:layout_editor_absoluteX="260dp" />
+            app:layout_constraintVertical_bias="0.92" />
 
         <Button
             android:id="@+id/btn_minus"

@@ -1,83 +1,40 @@
-package com.cinespoiler.adapter
+package com.cinespoiler.ui.fragments
 
-import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
+import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.cinespoiler.OnClickListener
+import com.bumptech.glide.Glide
 import com.cinespoiler.R
-import com.cinespoiler.databinding.ItemFoodBinding
 import com.cinespoiler.model.Food
 
-class FoodAdapter(private var foods: MutableList<Food>,
-                  private var listener: OnClickListener
-) :
-    RecyclerView.Adapter<FoodAdapter.ViewHolder>() {
+class FoodAdapter(private val foodList: List<Food>) : RecyclerView.Adapter<FoodAdapter.FoodViewHolder>() {
 
-    private lateinit var mContext: Context
-
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        mContext = parent.context
-
-        val view = LayoutInflater.from(mContext).inflate(R.layout.item_food, parent, false)
-
-        return ViewHolder(view)
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FoodViewHolder {
+        val itemView = LayoutInflater.from(parent.context).inflate(R.layout.item_food, parent, false)
+        return FoodViewHolder(itemView)
     }
 
-    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val food = foods.get(position)
-
-        with(holder) {
-            setListener(food)
-            binding.tvNameFood.text = food.name
-            binding.tvPrice.text = food.price.toString()
-            binding.cbFavorite.isChecked = food.isFavorite
+    override fun onBindViewHolder(holder: FoodViewHolder, position: Int) {
+        val currentItem = foodList[position]
+        holder.tvName.text = currentItem.name
+        holder.tvDescription.text = currentItem.description
+        holder.tvPrice.text = currentItem.price
+        if (currentItem.img.isNotEmpty()) {
+            Glide.with(holder.itemView.context)
+                .load(currentItem.img)
+                .into(holder.ivImage)
         }
     }
 
-    override fun getItemCount(): Int = foods.size
-    fun add(food: Food) {
-        foods.add(food)
-        notifyDataSetChanged()
+    override fun getItemCount() = foodList.size
+
+    class FoodViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+        val tvName: TextView = itemView.findViewById(R.id.tvNameFood)
+        val tvDescription: TextView = itemView.findViewById(R.id.tvDescriptionFood)
+        val tvPrice: TextView = itemView.findViewById(R.id.tvPriceFood)
+        val ivImage: ImageView = itemView.findViewById(R.id.imgPhotoFood)
     }
-
-    fun setFoods(foods: MutableList<Food>) {
-        this.foods = foods
-        notifyDataSetChanged()
-    }
-
-    fun update(food: Food) {
-        val index = foods.indexOf(food)
-        if (index != -1) {
-            foods.set(index, food)
-            notifyItemChanged(index)
-        }
-    }
-
-
-    // Clase interna inner class
-    // Heredando de recycler
-    inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        // Se debe sincronizar en graddle sino no aparece
-        // Creamos la variable para que reciba de la vista
-        val binding = ItemFoodBinding.bind(view)
-
-        fun setListener(food: Food) {
-            with(binding.root) {
-                setOnClickListener { listener.onClick(food) }
-                setOnLongClickListener {
-                    listener.onDeleteStore(food)
-                    true
-                }
-            }
-
-            binding.cbFavorite.setOnClickListener {
-                listener.onFavoriteFood(food)
-            }
-        }
-
-    }
-
-
 }

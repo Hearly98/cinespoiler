@@ -1,10 +1,11 @@
 package com.cinespoiler.model
 
 data class Food (
-    val id : Int = 0,
-    var name : String,
-    var price: Int = 0,
-    var isFavorite: Boolean = false
+    val name: String = "",
+    val description: String = "",
+    val price: String = "",
+    val isFavorite: Boolean = false,
+    val img: String = ""
 )
 
 

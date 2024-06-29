@@ -37,7 +37,6 @@ class AdminActivity: AppCompatActivity() {
                 addMovieFragment, AdminAddMovie::class.java.name)
             .commit()
 
-
         mBinding.btnv.setOnNavigationItemSelectedListener {
             when(it.itemId){
                 R.id.i_home -> {

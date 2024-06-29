@@ -1,5 +1,6 @@
 package com.cinespoiler.ui
 
+import android.app.DatePickerDialog
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
@@ -9,7 +10,6 @@ import androidx.lifecycle.lifecycleScope
 import com.cinespoiler.Gender
 import com.cinespoiler.MainActivity
 import com.cinespoiler.R
-
 import com.cinespoiler.dao.UserDao
 import com.cinespoiler.model.User
 import kotlinx.coroutines.Dispatchers
@@ -20,6 +20,7 @@ import java.util.*
 
 class RegisterActivity : AppCompatActivity() {
     private lateinit var userDao: UserDao
+    private lateinit var birthdateEditText: EditText
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -27,8 +28,38 @@ class RegisterActivity : AppCompatActivity() {
 
         userDao = UserApplication.database.userDao()
 
+        birthdateEditText = findViewById(R.id.et_DateRegister)
+        setupDatePicker()
         setupGenderSpinner()
         setupRegisterButton()
+    }
+
+    private fun setupDatePicker() {
+        birthdateEditText.setOnClickListener {
+            showDatePickerDialog()
+        }
+    }
+
+    private fun showDatePickerDialog() {
+        val calendar = Calendar.getInstance()
+        val year = calendar.get(Calendar.YEAR)
+        val month = calendar.get(Calendar.MONTH)
+        val day = calendar.get(Calendar.DAY_OF_MONTH)
+
+        val datePickerDialog = DatePickerDialog(
+            this,
+            { _, selectedYear, selectedMonth, selectedDay ->
+                val selectedDate = Calendar.getInstance()
+                selectedDate.set(selectedYear, selectedMonth, selectedDay)
+                val dateFormat = SimpleDateFormat("dd/MM/yyyy", Locale.getDefault())
+                birthdateEditText.setText(dateFormat.format(selectedDate.time))
+            },
+            year,
+            month,
+            day
+        )
+
+        datePickerDialog.show()
     }
 
     private fun setupGenderSpinner() {
@@ -44,7 +75,6 @@ class RegisterActivity : AppCompatActivity() {
 
     private fun setupRegisterButton() {
         val nameEditText: EditText = findViewById(R.id.et_NameRegister)
-        val birthdateEditText: EditText = findViewById(R.id.et_DateRegister)
         val emailEditText: EditText = findViewById(R.id.et_EmailRegister)
         val passwordEditText: EditText = findViewById(R.id.et_PasswordRegister)
         val registerButton: Button = findViewById(R.id.btn_register)
@@ -62,7 +92,7 @@ class RegisterActivity : AppCompatActivity() {
             val email = emailEditText.text.toString()
             val password = passwordEditText.text.toString()
 
-            var isValid = validateInput(
+            val isValid = validateInput(
                 name, gender, birthdate, email, password,
                 nameErrorTextView, genderErrorTextView, birthdateErrorTextView, emailErrorTextView, passwordErrorTextView
             )

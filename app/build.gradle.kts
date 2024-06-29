@@ -47,6 +47,9 @@ dependencies {
     implementation("androidx.appcompat:appcompat:1.6.1")
     implementation("com.google.android.material:material:1.6.1")
 
+    implementation("androidx.room:room-runtime:$room_version")
+    annotationProcessor("androidx.room:room-compiler:$room_version")
+
     // Dependencias de Glide
     implementation("com.github.bumptech.glide:glide:4.12.0")
 

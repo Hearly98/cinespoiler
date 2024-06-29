@@ -1,12 +1,12 @@
-package com.cinespoiler.ui
+package com.cinespoiler.ui.client
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
-import com.cinespoiler.FoodFragment
-import com.cinespoiler.HomeFragment
-import com.cinespoiler.MoviesFragment
+import com.cinespoiler.ui.fragments.FoodFragment
+import com.cinespoiler.ui.fragments.HomeFragment
+import com.cinespoiler.ui.fragments.MoviesFragment
 import com.cinespoiler.ProfileFragment
 import com.cinespoiler.R
 import com.cinespoiler.databinding.ActivityMainBinding

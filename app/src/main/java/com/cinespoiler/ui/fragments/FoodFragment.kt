@@ -1,16 +1,11 @@
-package com.cinespoiler
+package com.cinespoiler.ui.fragments
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.recyclerview.widget.GridLayoutManager
-import com.cinespoiler.adapter.FoodAdapter
-import com.cinespoiler.databinding.ActivityFoodBinding
-import com.cinespoiler.model.Food
-import com.cinespoiler.ui.FoodApplication
-import java.util.concurrent.LinkedBlockingQueue
+import com.cinespoiler.R
 
 class FoodFragment : Fragment() {
 

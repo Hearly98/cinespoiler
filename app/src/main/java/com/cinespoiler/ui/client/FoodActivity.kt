@@ -1,4 +1,4 @@
-package com.cinespoiler.ui
+package com.cinespoiler.ui.client
 
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.GridLayoutManager

@@ -1,4 +1,4 @@
-package com.cinespoiler.ui
+package com.cinespoiler.ui.client
 
 import android.app.Application
 import androidx.room.Room

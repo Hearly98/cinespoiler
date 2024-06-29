@@ -8,7 +8,7 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
-import com.cinespoiler.ui.HomeActivity
+import com.cinespoiler.ui.client.HomeActivity
 import com.cinespoiler.ui.RegisterActivity
 import com.cinespoiler.dao.UserDao
 import com.cinespoiler.ui.UserApplication

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/item_addMovie"
+        android:title="Pelicula"
+        app:showAsAction="never"
+        android:icon="@drawable/ic_movie"/>
+    <item
+        android:id="@+id/item_addFood"
+        android:title="Dulceria"
+        app:showAsAction="never"
+        android:icon="@drawable/ic_dulceria"/>
+</menu>

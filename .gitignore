@@ -30,3 +30,4 @@ local.properties
 .temp/
 # Archivos de entorno
 .env
+/app/google-services.json

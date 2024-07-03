@@ -13,6 +13,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Cinespoiler"
         tools:targetApi="31">
+        <activity android:name=".ui.admin.AdminActivity"/>
         <activity android:name=".ui.RegisterActivity" />
         <activity android:name=".ui.client.HomeActivity"/>
         <activity

@@ -125,7 +125,7 @@ class RegisterActivity : AppCompatActivity() {
                                         genderSpinner.selectedItem.toString(),
                                         birthdateEditText.text.toString(),
                                         emailEditText.text.toString(),
-                                        passwordEditText.text.toString()
+                                        passwordEditText.text.toString(),
                                     )
                                     db.collection("users")
                                         .document(user.uid)
@@ -133,7 +133,7 @@ class RegisterActivity : AppCompatActivity() {
                                         .addOnSuccessListener {
                                             navigateToLogin(email, ProviderType.BASIC)
                                         }
-                                        .addOnFailureListener { e ->
+                                        .addOnFailureListener {
                                             showAlert()
                                         }
                                 } else {

@@ -5,5 +5,6 @@ data class User(
     val gender : String,
     val birthdate : String,
     val email : String,
-    val password : String
+    val password : String,
+    val rol: String = "cliente"
 )

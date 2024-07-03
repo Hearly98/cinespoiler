@@ -11,6 +11,9 @@ import com.cinespoiler.ui.fragments.ProfileFragment
 import com.cinespoiler.R
 import com.cinespoiler.databinding.ActivityMainBinding
 
+enum class ProviderType{
+    BASIC
+}
 class HomeActivity: AppCompatActivity() {
 
     private lateinit var mBinding: ActivityMainBinding

@@ -5,18 +5,19 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import com.cinespoiler.R
-import com.cinespoiler.databinding.ActivityMainBinding
+import com.cinespoiler.databinding.ActivityAdminBinding
 import com.cinespoiler.ui.fragments.AdminAddFood
 import com.cinespoiler.ui.fragments.AdminAddMovie
+import com.cinespoiler.ui.fragments.ProfileFragment
 
 class AdminActivity: AppCompatActivity() {
 
-    private lateinit var mBinding: ActivityMainBinding
+    private lateinit var mBinding: ActivityAdminBinding
     private lateinit var mActiveFragment: Fragment
     private lateinit var mFragment: FragmentManager
     override fun onCreate(savedInstanceState: Bundle?){
         super.onCreate(savedInstanceState)
-        mBinding = ActivityMainBinding.inflate(layoutInflater)
+        mBinding = ActivityAdminBinding.inflate(layoutInflater)
         setContentView(mBinding.root)
         setUpNavMenu()
     }
@@ -25,7 +26,13 @@ class AdminActivity: AppCompatActivity() {
         var mFragmentManager = supportFragmentManager
         val addMovieFragment = AdminAddMovie()
         val addFoodFragment = AdminAddFood()
+        val profileFragment = ProfileFragment()
         mActiveFragment = addMovieFragment
+        mFragmentManager.beginTransaction()
+            .add(
+                R.id.hostFragmentAdmin,
+                profileFragment, ProfileFragment::class.java.name)
+            .hide(profileFragment).commit()
         mFragmentManager.beginTransaction()
             .add(
                 R.id.hostFragmentAdmin,
@@ -39,16 +46,22 @@ class AdminActivity: AppCompatActivity() {
 
         mBinding.btnv.setOnNavigationItemSelectedListener {
             when(it.itemId){
-                R.id.i_home -> {
+                R.id.item_addFood-> {
                     mFragmentManager.beginTransaction().hide(mActiveFragment)
                         .show(addFoodFragment).commit()
                     mActiveFragment = addFoodFragment
                     true
                 }
-                R.id.i_movie -> {
+                R.id.item_addMovie -> {
                     mFragmentManager.beginTransaction().hide(mActiveFragment)
                         .show(addMovieFragment).commit()
                     mActiveFragment = addMovieFragment
+                    true
+                }
+                R.id.item_Profile ->{
+                    mFragmentManager.beginTransaction().hide(mActiveFragment)
+                        .show(profileFragment).commit()
+                    mActiveFragment = profileFragment
                     true
                 }
                 else -> false

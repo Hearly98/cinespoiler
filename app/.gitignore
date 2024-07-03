@@ -76,3 +76,6 @@ proguard/
 # OS-specific files
 .DS_Store
 Thumbs.db
+
+/app/google-services.json
+app/google-services.json

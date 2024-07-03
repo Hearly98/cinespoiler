@@ -11,4 +11,9 @@
         android:title="Dulceria"
         app:showAsAction="never"
         android:icon="@drawable/ic_dulceria"/>
+    <item
+        android:id="@+id/item_Profile"
+        android:title="Perfil"
+        app:showAsAction="never"
+        android:icon="@drawable/ic_user"/>
 </menu>

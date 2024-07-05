@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle
+import android.os.PersistableBundle
 import android.util.Log
 import android.widget.Button
 import android.widget.EditText
@@ -16,6 +17,7 @@ import com.cinespoiler.ui.admin.AdminActivity
 import com.cinespoiler.ui.client.HomeActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
+
 //Aqui se manejará la logica de inicio de Sesión
 class MainActivity : AppCompatActivity() {
 
@@ -161,4 +163,9 @@ class MainActivity : AppCompatActivity() {
         startActivity(homeIntent)
         finish()
     }
+
+    override fun onCreate(savedInstanceState: Bundle?, persistentState: PersistableBundle?) {
+        super.onCreate(savedInstanceState, persistentState)
+    }
+
 }

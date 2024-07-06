@@ -1,14 +1,13 @@
 package com.cinespoiler.ui.admin
 
+
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import com.cinespoiler.R
 import com.cinespoiler.databinding.ActivityAdminBinding
-import com.cinespoiler.ui.fragments.AdminAddFood
-import com.cinespoiler.ui.fragments.AdminAddMovie
-import com.cinespoiler.ui.fragments.ProfileFragment
+import com.cinespoiler.ui.fragments.*
 
 class AdminActivity: AppCompatActivity() {
 

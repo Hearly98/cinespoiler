@@ -31,7 +31,13 @@ class MoviesFragment : Fragment() {
         val view = inflater.inflate(R.layout.fragment_movies, container, false)
         recyclerView = view?.findViewById(R.id.recyclerViewMovie)!!
         mGridLayout = GridLayoutManager(context, 2)
-        mAdapter = MovieAdapter(listMovie)
+        mAdapter = MovieAdapter(listMovie){ movieId ->
+            val fragment = MovieDetailsFragment.newIntance(movieId)
+            parentFragmentManager?.beginTransaction()
+                ?.replace(R.id.hostFragment, fragment)
+                ?.addToBackStack(null)
+                ?.commit()
+        }
         recyclerView.apply{
             adapter = mAdapter
             layoutManager = mGridLayout
@@ -45,9 +51,11 @@ class MoviesFragment : Fragment() {
          DB.collection("movies")
               .get().addOnSuccessListener { documents ->
              listMovie.clear()
-                 listMovie.addAll(documents.toObjects(Movie::class.java))
+                 for(document in documents){
+                val movie =  document.toObject(Movie::class.java).copy(movieId = document.id)
+                     listMovie.add(movie)
+             }
                  mAdapter.notifyDataSetChanged()
-
           }.addOnFailureListener {
                   error -> Log.e("MovieFragment", "Error al obtener los datos: ", error)
           }

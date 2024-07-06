@@ -1,31 +1,30 @@
 package com.cinespoiler.ui.fragments
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
-import android.view.Menu
-import android.view.MenuInflater
-import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
-import android.widget.Switch
-import androidx.recyclerview.widget.GridLayoutManager
+import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.cinespoiler.R
 import com.cinespoiler.model.Food
 import com.google.firebase.firestore.FirebaseFirestore
-import com.google.firebase.firestore.toObjects
-import com.google.firebase.ktx.Firebase
+import com.google.firebase.firestore.ktx.toObject
 
-class AdminAddFood  : Fragment()  {
+class AdminAddFood : Fragment() {
     private lateinit var foodNameEditText: EditText
     private lateinit var foodPriceEditText: EditText
     private lateinit var foodDescriptionEditText: EditText
     private lateinit var foodImageLinkEditText: EditText
     private lateinit var btnAddFood: Button
+    private lateinit var recyclerView: RecyclerView
+    private lateinit var foodAdapter: AdminFoodAdapter
+    private val listFood = mutableListOf<Food>()
     private val db = FirebaseFirestore.getInstance()
 
     override fun onCreateView(
@@ -39,11 +38,17 @@ class AdminAddFood  : Fragment()  {
         foodDescriptionEditText = view.findViewById(R.id.tv_foodDescriptionAdd)
         foodImageLinkEditText = view.findViewById(R.id.tv_foodImageLinkAdd)
         btnAddFood = view.findViewById(R.id.btn_AddFood)
+        recyclerView = view.findViewById(R.id.recyclerViewFoodAdmin)
+
+        recyclerView.layoutManager = LinearLayoutManager(context)
+        foodAdapter = AdminFoodAdapter(listFood, ::onEditClick, ::onDeleteClick)
+        recyclerView.adapter = foodAdapter
 
         btnAddFood.setOnClickListener {
             addFood()
         }
 
+        getFood()
         return view
     }
 
@@ -65,35 +70,70 @@ class AdminAddFood  : Fragment()  {
             db.collection("food")
                 .add(food)
                 .addOnSuccessListener {
-                    // Limpiar los campos de texto después de agregar
                     foodNameEditText.text.clear()
                     foodPriceEditText.text.clear()
                     foodDescriptionEditText.text.clear()
                     foodImageLinkEditText.text.clear()
-                    // Mostrar mensaje de éxito
+                    getFood()
+                    Toast.makeText(context, "Comida añadida correctamente", Toast.LENGTH_SHORT).show()
                 }
                 .addOnFailureListener { e ->
-                    // Mostrar mensaje de error
+                    Toast.makeText(context, "Error al añadir comida: ${e.message}", Toast.LENGTH_SHORT).show()
                 }
         } else {
-            // Mostrar mensaje de que todos los campos son obligatorios
+            Toast.makeText(context, "Todos los campos son obligatorios", Toast.LENGTH_SHORT).show()
         }
     }
-}
 
-    /*private fun addFood() {
-        val DB = FirebaseFirestore.getInstance()
-        val etNameFood = view?.findViewById<EditText>(R.id.tv_foodNameAdd)
-        val etPriceFood = view?.findViewById<EditText>(R.id.tv_foodPriceAdd)
-        val etDescriptionFood = view?.findViewById<EditText>(R.id.tv_foodDescriptionAdd)
-        DB.collection("food").add(listFood).addOnCompleteListener {
-                for(document in documents){
-                    etNameFood.("food_name")
+    private fun getFood() {
+        db.collection("food").get()
+            .addOnSuccessListener { documents ->
+                listFood.clear()
+                for (document in documents) {
+                    val food = document.toObject<Food>().apply { id = document.id }
+                    listFood.add(food)
+                }
+                foodAdapter.notifyDataSetChanged()
+            }
+            .addOnFailureListener { error ->
+                Log.e("AdminAddFood", "Error al obtener los datos: ", error)
+            }
+    }
+
+    private fun onEditClick(food: Food) {
+        foodNameEditText.setText(food.name)
+        foodPriceEditText.setText(food.price)
+        foodDescriptionEditText.setText(food.description)
+        foodImageLinkEditText.setText(food.img)
+
+        btnAddFood.setOnClickListener {
+            val updatedFood = Food(
+                id = food.id,
+                name = foodNameEditText.text.toString(),
+                price = foodPriceEditText.text.toString(),
+                description = foodDescriptionEditText.text.toString(),
+                isFavorite = false,
+                img = foodImageLinkEditText.text.toString()
+            )
+            db.collection("food").document(food.id).set(updatedFood)
+                .addOnSuccessListener {
+                    Toast.makeText(context, "Comida actualizada correctamente", Toast.LENGTH_SHORT).show()
+                    getFood()
+                }
+                .addOnFailureListener { e ->
+                    Toast.makeText(context, "Error al actualizar comida: ${e.message}", Toast.LENGTH_SHORT).show()
                 }
         }
+    }
 
-    }*/
-
-
-
-
+    private fun onDeleteClick(food: Food) {
+        db.collection("food").document(food.id).delete()
+            .addOnSuccessListener {
+                Toast.makeText(context, "Comida eliminada correctamente", Toast.LENGTH_SHORT).show()
+                getFood()
+            }
+            .addOnFailureListener { e ->
+                Toast.makeText(context, "Error al eliminar comida: ${e.message}", Toast.LENGTH_SHORT).show()
+            }
+    }
+}

@@ -11,7 +11,8 @@ import com.cinespoiler.R
 import com.cinespoiler.model.Food
 import com.cinespoiler.model.Movie
 
-class MovieAdapter(private val movieList: List<Movie>) : RecyclerView.Adapter<MovieAdapter.MovieViewHolder>() {
+class MovieAdapter(private val movieList: List<Movie>,
+                   private val onItemClick: (String) -> Unit) : RecyclerView.Adapter<MovieAdapter.MovieViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MovieViewHolder {
         val itemView = LayoutInflater.from(parent.context).inflate(R.layout.item_cartelera, parent, false)
@@ -25,6 +26,7 @@ class MovieAdapter(private val movieList: List<Movie>) : RecyclerView.Adapter<Mo
                 .load(currentItem.movieImg)
                 .into(holder.ivMovie)
         }
+        holder.itemView.setOnClickListener { onItemClick(currentItem.movieId) }
     }
 
     override fun getItemCount() = movieList.size
@@ -32,4 +34,6 @@ class MovieAdapter(private val movieList: List<Movie>) : RecyclerView.Adapter<Mo
     class MovieViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val ivMovie: ImageView = itemView.findViewById(R.id.imgPhotoCartelera)
     }
+
+
 }

@@ -14,86 +14,99 @@
 
         <ImageView
             android:id="@+id/imgFoodAdd"
-            android:layout_width="123dp"
-            android:layout_height="137dp"
+            android:layout_width="86dp"
+            android:layout_height="76dp"
             android:background="@color/gray"
             android:src="@drawable/ic_add_photo"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.916"
+            app:layout_constraintHorizontal_bias="0.498"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.03" />
+            app:layout_constraintVertical_bias="0.027" />
 
         <EditText
             android:id="@+id/tv_foodNameAdd"
             android:layout_width="wrap_content"
             android:layout_height="48dp"
-            android:layout_marginTop="24dp"
-            android:text=""
             android:hint="Nombre de la Comida"
-            app:layout_constraintTop_toBottomOf="@+id/imgFoodAdd"
-            app:layout_constraintBottom_toBottomOf="parent"
+            android:text=""
+            app:layout_constraintBottom_toBottomOf="@+id/recyclerViewFoodAdmin"
+            app:layout_constraintHorizontal_bias="0.069"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintVertical_bias="0.01"
-            />
+            app:layout_constraintTop_toBottomOf="@+id/imgFoodAdd"
+            app:layout_constraintVertical_bias="0.038" />
 
         <EditText
             android:id="@+id/tv_foodPriceAdd"
             android:layout_width="wrap_content"
             android:layout_height="48dp"
-            android:layout_marginTop="24dp"
-            android:inputType="number"
             android:hint="Precio de la Comida"
+            android:inputType="number"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintHorizontal_bias="0.161"
+            app:layout_constraintHorizontal_bias="0.934"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
+
+
             app:layout_constraintTop_toBottomOf="@+id/imgFoodAdd"
-            app:layout_constraintVertical_bias="0.2" />
+            app:layout_constraintVertical_bias="0.038" />
 
         <EditText
             android:id="@+id/tv_foodDescriptionAdd"
-            android:layout_width="348dp"
-            android:layout_height="159dp"
+            android:layout_width="351dp"
+            android:layout_height="68dp"
+            android:layout_marginTop="12dp"
+
             android:hint="Descripcion de la Comida"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintHorizontal_bias="0.746"
+            app:layout_constraintHorizontal_bias="0.466"
+
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imgFoodAdd"
-            app:layout_constraintVertical_bias="0.522" />
+            app:layout_constraintTop_toBottomOf="@+id/tv_foodPriceAdd"
+            app:layout_constraintVertical_bias="0.083" />
 
         <Button
             android:id="@+id/btn_AddFood"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Guardar "
+            android:background="@color/purple_200"
             android:drawableEnd="@drawable/ic_dulceria"
+            android:padding="10dp"
+            android:text="Guardar "
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            android:background="@color/purple_200"
-            android:padding="10dp"
+            app:layout_constraintHorizontal_bias="0.942"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.973" />
+            app:layout_constraintVertical_bias="0.652" />
 
         <EditText
             android:id="@+id/tv_foodImageLinkAdd"
-            android:layout_width="292dp"
-            android:layout_height="46dp"
+            android:layout_width="348dp"
+            android:layout_height="50dp"
             android:layout_marginTop="24dp"
             android:hint="Enlace de la Imagen"
-            app:layout_constraintBottom_toTopOf="@id/btn_AddFood"
-            app:layout_constraintHorizontal_bias="0.427"
+            app:layout_constraintBottom_toBottomOf="@+id/recyclerViewFoodAdmin"
+            app:layout_constraintHorizontal_bias="0.492"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tv_foodDescriptionAdd"
-            app:layout_constraintVertical_bias="0.0" />
+            app:layout_constraintVertical_bias="0.019" />
 
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerViewFoodAdmin"
+            android:layout_width="406dp"
+            android:layout_height="179dp"
+            tools:listitem="@layout/item_food_admin"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+
+            app:layout_constraintVertical_bias="1.0" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
-
 </FrameLayout>

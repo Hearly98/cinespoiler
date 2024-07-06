@@ -3,6 +3,7 @@ package com.cinespoiler.ui.fragments
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
@@ -27,6 +28,20 @@ class FoodAdapter(private val foodList: List<Food>) : RecyclerView.Adapter<FoodA
                 .load(currentItem.img)
                 .into(holder.ivImage)
         }
+
+        holder.btnAdd.setOnClickListener {
+            var currentValue = holder.tvCounter.text.toString().toIntOrNull() ?: 0
+            currentValue++
+            holder.tvCounter.text = currentValue.toString()
+        }
+
+        holder.btnMinus.setOnClickListener {
+            var currentValue = holder.tvCounter.text.toString().toIntOrNull() ?: 0
+            if (currentValue > 0) {
+                currentValue--
+            }
+            holder.tvCounter.text = currentValue.toString()
+        }
     }
 
     override fun getItemCount() = foodList.size
@@ -36,5 +51,8 @@ class FoodAdapter(private val foodList: List<Food>) : RecyclerView.Adapter<FoodA
         val tvDescription: TextView = itemView.findViewById(R.id.tvDescriptionFood)
         val tvPrice: TextView = itemView.findViewById(R.id.tvPriceFood)
         val ivImage: ImageView = itemView.findViewById(R.id.imgPhotoFood)
+        val btnAdd: Button = itemView.findViewById(R.id.btn_add)
+        val btnMinus: Button = itemView.findViewById(R.id.btn_minus)
+        val tvCounter: TextView = itemView.findViewById(R.id.tvCounter)
     }
 }

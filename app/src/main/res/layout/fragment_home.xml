@@ -8,26 +8,12 @@
     android:background="@color/black">
 
 
-
-
     <ImageView
         android:id="@+id/imageView2"
-        android:layout_width="422dp"
-        android:layout_height="521dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:src="@drawable/home" />
 
-    <TextView
-        android:id="@+id/textView3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="545dp"
-        android:text="Olvídate de las colas y disfruta lo mejor en peliculas solo aqui en CINESPOILER  "
-        android:textColor="@android:color/white"
-        android:fontFamily="sans-serif-light"
-        android:textAlignment="center"
-        android:textSize="18sp"
-        android:textStyle="italic" />
 
-    <!-- TODO: Update blank fragment layout -->
 
 </FrameLayout>

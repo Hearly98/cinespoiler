@@ -12,10 +12,11 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         >
+
         <ImageView
             android:id="@+id/imgMovie"
-            android:layout_width="187dp"
-            android:layout_height="228dp"
+            android:layout_width="151dp"
+            android:layout_height="131dp"
             android:background="@color/gray"
             android:contentDescription="@string/description_img_cartelera"
             android:src="@drawable/ic_add_photo"
@@ -24,62 +25,75 @@
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.078"
-            />
+            app:layout_constraintVertical_bias="0.078" />
 
         <EditText
             android:id="@+id/tv_movieName"
-            android:layout_width="wrap_content"
-            android:layout_height="48dp"
+            android:layout_width="295dp"
+            android:layout_height="39dp"
             android:layout_marginTop="24dp"
-            android:text="Nombre de la Película"
-            app:layout_constraintTop_toBottomOf="@+id/imgMovie"
+            android:hint="Nombre de la Película"
             app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintHorizontal_bias="0.491"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintVertical_bias="0.01"
-            />
+            app:layout_constraintTop_toBottomOf="@+id/imgMovie"
+            app:layout_constraintVertical_bias="0.0" />
 
         <EditText
-            android:id="@+id/tv_moviePricew"
+            android:id="@+id/tv_moviePrice"
             android:layout_width="wrap_content"
             android:layout_height="48dp"
             android:layout_marginTop="24dp"
+            android:hint="Precio de la Película"
             android:inputType="number"
-            android:text="Precio de la Película"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintHorizontal_bias="0.161"
+            app:layout_constraintHorizontal_bias="0.497"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/imgMovie"
-            app:layout_constraintVertical_bias="0.2" />
+            app:layout_constraintVertical_bias="0.13" />
 
         <EditText
             android:id="@+id/tv_movieDescription"
-            android:layout_width="348dp"
-            android:layout_height="159dp"
-            android:text="Sipnosis de la Película"
+            android:layout_width="341dp"
+            android:layout_height="78dp"
+            android:hint="Sipnosis de la Película"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintHorizontal_bias="0.619"
+            app:layout_constraintHorizontal_bias="0.442"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/imgMovie"
-            app:layout_constraintVertical_bias="0.656" />
+            app:layout_constraintVertical_bias="0.352" />
 
         <Button
             android:id="@+id/btn_AddMovie"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:background="@color/purple_200"
             android:drawableEnd="@drawable/ic_movie"
-            android:text="Guardar "
+            android:padding="10dp"
+            android:text="        Agregar"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.50"
             app:layout_constraintStart_toStartOf="parent"
-            android:padding="10dp"
-            android:background="@color/purple_200"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.973" />
+            app:layout_constraintVertical_bias="0.844" />
+
+        <EditText
+            android:id="@+id/tv_movieImageLinkAdd"
+            android:layout_width="348dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="24dp"
+            android:hint="Enlace de la Imagen"
+            app:layout_constraintHorizontal_bias="0.492"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_movieDescription"
+            app:layout_constraintVertical_bias="0.019" />
+
+
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

@@ -97,6 +97,17 @@
             app:layout_constraintTop_toBottomOf="@+id/tvDetailmovieName"
             app:layout_constraintVertical_bias="0.494" />
 
+        <ImageView
+            android:id="@+id/btnRegresar"
+            android:layout_width="57dp"
+            android:layout_height="48dp"
+            android:src="@drawable/ic_regresar"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.914" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 

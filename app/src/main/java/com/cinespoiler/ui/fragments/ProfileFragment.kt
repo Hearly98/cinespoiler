@@ -29,6 +29,7 @@ import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.storage
 import java.io.File
 import java.io.FileInputStream
+import android.widget.Toast
 
 
 class ProfileFragment : Fragment() {
@@ -37,6 +38,11 @@ class ProfileFragment : Fragment() {
     }
     private lateinit var sharedPreferences: SharedPreferences
     private lateinit var storage: FirebaseStorage
+
+    //Agregado para actualizar datos del usuario
+    private lateinit var db: FirebaseFirestore
+    private lateinit var auth: FirebaseAuth
+
     private val getContent = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
         if (result.resultCode == Activity.RESULT_OK) {
             val data: Intent? = result.data
@@ -53,6 +59,10 @@ class ProfileFragment : Fragment() {
         val view = inflater.inflate(R.layout.fragment_profile, container, false)
         storage = Firebase.storage
         sharedPreferences = requireActivity().getSharedPreferences("user_prefs", android.content.Context.MODE_PRIVATE)
+        // llamando a auth y db
+        auth = FirebaseAuth.getInstance()
+        db = FirebaseFirestore.getInstance()
+        //
         val userName = sharedPreferences.getString("user_name", "")
         val userEmail = sharedPreferences.getString("user_email", "")
         val userGender = sharedPreferences.getString("user_gender", "")
@@ -66,12 +76,22 @@ class ProfileFragment : Fragment() {
         val birthDateEditText = view.findViewById<EditText>(R.id.etFechNacProfile)
         val passwordEditText = view.findViewById<EditText>(R.id.etPasswordProfile)
         val imgView = view.findViewById<ImageView>(R.id.imgProfile)
+        val btnGuardar = view.findViewById<Button>(R.id.btnGuardar)
 
+        // Deshabilitar la edición del email y contraseña
+        emailEditText.isEnabled = false
+        passwordEditText.isEnabled = false
+
+        // Guardar cambios en el perfil de usuario
+        btnGuardar.setOnClickListener {
+            saveUserProfile(nameEditText, genderSpinner, birthDateEditText)
+        }
 
         nameEditText.setText(userName)
         emailEditText.setText(userEmail)
         birthDateEditText.setText(birthdate)
         passwordEditText.setText(password)
+
         // Cargar imagen del perfil utilizando Glide
         if (imgUri.isNullOrEmpty()) {
             imgView.setImageResource(R.drawable.ic_user)
@@ -104,6 +124,49 @@ class ProfileFragment : Fragment() {
         }
         return view
     }
+
+    // Función para guardar el perfil de usuario en Firestore
+    private fun saveUserProfile(
+        nameEditText: EditText, genderSpinner: Spinner, birthDateEditText: EditText
+    ) {
+        val userId = auth.currentUser?.uid
+        val name = nameEditText.text.toString()
+        val gender = genderSpinner.selectedItem.toString()
+        val birthdate = birthDateEditText.text.toString()
+        val email = auth.currentUser?.email
+
+        // Crear una instancia de User con los datos actualizados
+        val updatedUser = User(
+            name = name,
+            gender = gender,
+            birthdate = birthdate,
+            email = email ?: "",
+            password = "", // La contraseña no se actualiza aquí
+            rol = "cliente"
+        )
+
+        // Guardar los datos actualizados en Firestore
+        userId?.let {
+            db.collection("users").document(it)
+                .set(updatedUser)
+                .addOnSuccessListener {
+                    Log.d("ProfileFragment", "User profile updated successfully")
+                    // Actualizar las SharedPreferences con los datos actualizados
+                    with(sharedPreferences.edit()) {
+                        putString("user_name", name)
+                        putString("user_gender", gender)
+                        putString("user_birthdate", birthdate)
+                        apply()
+                    }
+                    // Mostrar mensaje de confirmación
+                    Toast.makeText(requireContext(), "Sus datos han sido actualizados", Toast.LENGTH_SHORT).show()
+                }
+                .addOnFailureListener { e ->
+                    Log.e("ProfileFragment", "Error updating user profile", e)
+                }
+        }
+    }
+
 
     private fun logout() {
         Log.d("ProfileFragment", "Logout button pressed")

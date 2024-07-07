@@ -19,6 +19,7 @@ class MovieDetailsFragment : Fragment() {
     private lateinit var movieName: TextView
     private lateinit var movieDescription: TextView
     private lateinit var moviePrice: TextView
+    private lateinit var regresar: ImageView
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -30,6 +31,8 @@ class MovieDetailsFragment : Fragment() {
          movieName = view.findViewById(R.id.tvDetailmovieName)
          movieDescription= view.findViewById(R.id.tvDetailDescription)
          moviePrice = view.findViewById(R.id.tvDetailPrice)
+         regresar = view.findViewById(R.id.btnRegresar)
+         regresar.setOnClickListener { parentFragmentManager.popBackStack()}
 
         return view
 

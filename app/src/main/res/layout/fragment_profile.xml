@@ -128,7 +128,8 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="3"
                 android:textSize="14dp"
-                android:hint="Ingrese su email" />
+                android:hint="Ingrese su email"
+                android:enabled="false" />
         </LinearLayout>
 
         <LinearLayout
@@ -175,8 +176,18 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="3"
                 android:hint="Ingrese su contraseña"
-                android:inputType="textPassword" />
+                android:inputType="textPassword"
+                android:enabled="false" />
+
         </LinearLayout>
+
+        <Button
+            android:id="@+id/btnGuardar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="16dp"
+            android:text="Guardar"/>
 
     </LinearLayout>
 

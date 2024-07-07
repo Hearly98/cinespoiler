@@ -6,20 +6,25 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.cinespoiler.EntradasFragment
 import com.cinespoiler.R
+import com.cinespoiler.adapter.MovieAdapter
+import com.cinespoiler.model.Movie
 import com.google.firebase.firestore.FirebaseFirestore
 
 class MovieDetailsFragment : Fragment() {
-
+    private val listMovie = mutableListOf<Movie>()
     private lateinit var movieImg: ImageView
     private lateinit var movieName: TextView
     private lateinit var movieDescription: TextView
     private lateinit var moviePrice: TextView
     private lateinit var regresar: ImageView
+    private lateinit var btn_entradas: Button
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -33,10 +38,20 @@ class MovieDetailsFragment : Fragment() {
          moviePrice = view.findViewById(R.id.tvDetailPrice)
          regresar = view.findViewById(R.id.btnRegresar)
          regresar.setOnClickListener { parentFragmentManager.popBackStack()}
-
+        btn_entradas = view.findViewById(R.id.btnEntrada)
+        btn_entradas.setOnClickListener {
+            val movieId = arguments?.getString("movieId") ?: return@setOnClickListener
+            val fragment = EntradasFragment.newInstance(movieId)
+            parentFragmentManager.beginTransaction()
+                .replace(R.id.hostFragment, fragment)
+                .addToBackStack(null)
+                .commit()
+        }
         return view
 
     }
+
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val movieId = arguments?.getString("movieId")?: return
@@ -52,7 +67,7 @@ class MovieDetailsFragment : Fragment() {
                     val img = document.getString("movieImg")
                     val name = document.getString("movieName")
                     val description = document.getString("movieDescription")
-                    val price = document.getString("moviePrice")
+                    val price = document.getDouble("moviePrice").toString()
 
                     movieName.text = name
                     movieDescription.text = description
@@ -65,14 +80,15 @@ class MovieDetailsFragment : Fragment() {
                 Log.e("Cargar detalle pelicula", "Ha ocurrido un error al obterner los datoos")
             }
     }
-
     companion object{
-        fun newIntance(movieId: String):MovieDetailsFragment{
-            val fragment = MovieDetailsFragment()
-            val args= Bundle()
-            args.putString("movieId", movieId)
-            fragment.arguments = args
-            return fragment
-        }
+            fun newInstance(movieId: String): MovieDetailsFragment {
+                val fragment = MovieDetailsFragment()
+                val args = Bundle()
+                args.putString("movieId", movieId)
+                fragment.arguments = args
+                return fragment
+            }
+
+
     }
 }

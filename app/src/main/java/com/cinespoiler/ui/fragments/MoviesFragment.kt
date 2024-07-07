@@ -32,7 +32,7 @@ class MoviesFragment : Fragment() {
         recyclerView = view?.findViewById(R.id.recyclerViewMovie)!!
         mGridLayout = GridLayoutManager(context, 2)
         mAdapter = MovieAdapter(listMovie){ movieId ->
-            val fragment = MovieDetailsFragment.newIntance(movieId)
+            val fragment = MovieDetailsFragment.newInstance(movieId)
             parentFragmentManager?.beginTransaction()
                 ?.replace(R.id.hostFragment, fragment)
                 ?.addToBackStack(null)
@@ -52,8 +52,8 @@ class MoviesFragment : Fragment() {
               .get().addOnSuccessListener { documents ->
              listMovie.clear()
                  for(document in documents){
-                val movie =  document.toObject(Movie::class.java).copy(movieId = document.id)
-                     listMovie.add(movie)
+                        val movie = document.toObject(Movie::class.java).copy(movieId = document.id)
+                        listMovie.add(movie)
              }
                  mAdapter.notifyDataSetChanged()
           }.addOnFailureListener {

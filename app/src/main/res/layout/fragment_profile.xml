@@ -169,15 +169,16 @@
                 android:layout_weight="1"
                 android:text="Contraseña"
                 android:textSize="14dp" />
-            <EditText
-                android:id="@+id/etPasswordProfile"
+            <Button
+                android:id="@+id/btnRecoveryPasswordProfile"
                 android:layout_width="0dp"
                 android:textSize="14dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="3"
-                android:hint="Ingrese su contraseña"
+                android:hint="CAMBIAR CONTRASEÑA"
+                android:textColorHint="@color/white"
                 android:inputType="textPassword"
-                android:enabled="false" />
+                />
 
         </LinearLayout>
 

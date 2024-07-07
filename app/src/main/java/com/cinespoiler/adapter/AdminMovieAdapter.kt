@@ -26,7 +26,7 @@ class AdminMovieAdapter(
         val currentItem = movieList[position]
         holder.tvName.text = currentItem.movieName
         holder.tvDescription.text = currentItem.movieDescription
-        holder.tvPrice.text = currentItem.moviePrice
+        holder.tvPrice.text = currentItem.moviePrice.toString()
         if (currentItem.movieImg.isNotEmpty()) {
             Glide.with(holder.itemView.context)
                 .load(currentItem.movieImg)

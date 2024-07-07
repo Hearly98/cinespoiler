@@ -25,14 +25,12 @@
             android:id="@+id/B5"
             android:layout_width="36dp"
             android:layout_height="33dp"
-            android:layout_marginStart="260dp"
-            android:layout_marginTop="150dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintHorizontal_bias="0.693"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.195" />
+            app:layout_constraintVertical_bias="0.388" />
 
         <ImageButton
             android:id="@+id/B6"
@@ -40,7 +38,7 @@
             android:layout_height="33dp"
             app:layout_constraintBottom_toBottomOf="@+id/imageView"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.813"
+            app:layout_constraintHorizontal_bias="0.834"
             app:layout_constraintStart_toStartOf="@+id/imageView"
             app:layout_constraintTop_toTopOf="@+id/imageView"
             app:layout_constraintVertical_bias="0.659" />
@@ -80,15 +78,15 @@
 
         <ImageButton
             android:id="@+id/B1"
-            android:layout_width="36dp"
+            android:layout_width="33dp"
             android:layout_height="33dp"
             android:visibility="visible"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.186"
+            app:layout_constraintHorizontal_bias="0.193"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.394" />
+            app:layout_constraintVertical_bias="0.386" />
 
         <ImageButton
             android:id="@+id/C2"
@@ -162,13 +160,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="165dp"
-            android:layout_marginTop="548dp"
             android:text="Pagar"
-            app:layout_constraintBottom_toTopOf="@+id/imageViewVenta"
+
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.006"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.939" />
 
         <ImageButton
             android:id="@+id/A1"
@@ -226,7 +225,7 @@
             app:layout_constraintVertical_bias="0.905" />
 
         <TextView
-            android:id="@+id/textView"
+            android:id="@+id/tvMovieName_Butaca"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Nombre de la pelicula"
@@ -235,41 +234,70 @@
             app:layout_constraintHorizontal_bias="0.109"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/imageView"
-            app:layout_constraintVertical_bias="0.104" />
+            app:layout_constraintVertical_bias="0.041" />
 
         <TextView
-            android:id="@+id/textView2"
+            android:id="@+id/tvButacaText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Butacas"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.084"
+            app:layout_constraintHorizontal_bias="0.083"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/imageView"
-            app:layout_constraintVertical_bias="0.224" />
+            app:layout_constraintVertical_bias="0.269" />
+
 
         <TextView
-            android:id="@+id/textView3"
+            android:id="@+id/tvButacaTotal"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Numero de Butacas"
+            android:text="Numero de las Butacas"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.305"
+            app:layout_constraintHorizontal_bias="0.309"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/imageView"
-            app:layout_constraintVertical_bias="0.224" />
+            app:layout_constraintVertical_bias="0.269" />
 
         <EditText
-            android:id="@+id/editTextDate"
+            android:id="@+id/etFechaCompra"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:ems="10"
             android:hint="Fecha de función"
             android:inputType="date"
-            tools:layout_editor_absoluteX="30dp"
-            tools:layout_editor_absoluteY="466dp" />
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.149"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imageView"
+            app:layout_constraintVertical_bias="0.452" />
+
+        <TextView
+            android:id="@+id/tvTotal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Monto Total"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.089"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.851" />
+
+        <TextView
+            android:id="@+id/tvMoviePriceButaca"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Precio de butaca"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.084"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.648" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </FrameLayout>

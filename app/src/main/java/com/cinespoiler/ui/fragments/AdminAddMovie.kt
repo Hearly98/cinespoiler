@@ -34,16 +34,12 @@ class AdminAddMovie : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_admin_add_movie, container, false)
-
-
-
         movieNameEditText = view.findViewById(R.id.tv_movieName)
         moviePriceEditText = view.findViewById(R.id.tv_moviePrice)
         movieDescriptionEditText = view.findViewById(R.id.tv_movieDescription)
         movieImageLinkEditText = view.findViewById(R.id.tv_movieImageLinkAdd)
         btnAddMovie = view.findViewById(R.id.btn_AddMovie)
         movieAdapter = AdminMovieAdapter(listMovie, ::onEditClick, ::onDeleteClick)
-
 
         btnAddMovie.setOnClickListener {
             addMovie()
@@ -56,35 +52,41 @@ class AdminAddMovie : Fragment() {
 
     private fun addMovie() {
         val movieName = movieNameEditText.text.toString().trim()
-        val moviePrice = moviePriceEditText.text.toString().trim()
+        val moviePriceText = moviePriceEditText.text.toString().trim()
         val movieDescription = movieDescriptionEditText.text.toString().trim()
         val movieImageLink = movieImageLinkEditText.text.toString().trim()
 
-        if (movieName.isNotEmpty() && moviePrice.isNotEmpty() && movieDescription.isNotEmpty() && movieImageLink.isNotEmpty()) {
-            val movie = Movie(
-                movieName = movieName,
-                moviePrice =  moviePrice,
-                movieDescription =  movieDescription,
-                movieImg =  movieImageLink
-            )
+        if (movieName.isNotEmpty() && moviePriceText.isNotEmpty() && movieDescription.isNotEmpty() && movieImageLink.isNotEmpty()) {
+            val moviePrice = moviePriceText.toDoubleOrNull()
+            if (moviePrice != null) {
+                val movie = Movie(
+                    movieName = movieName,
+                    moviePrice = moviePrice,
+                    movieDescription = movieDescription,
+                    movieImg = movieImageLink
+                )
 
-            db.collection("movies")
-                .add(movie)
-                .addOnSuccessListener {
-                    movieNameEditText.text.clear()
-                    moviePriceEditText.text.clear()
-                    movieDescriptionEditText.text.clear()
-                    movieImageLinkEditText.text.clear()
-                    getMovie()
-                    Toast.makeText(context, "Pelicula añadida correctamente", Toast.LENGTH_SHORT).show()
-                }
-                .addOnFailureListener { e ->
-                    Toast.makeText(context, "Error al añadir Pelicula: ${e.message}", Toast.LENGTH_SHORT).show()
-                }
+                db.collection("movies")
+                    .add(movie)
+                    .addOnSuccessListener {
+                        movieNameEditText.text.clear()
+                        moviePriceEditText.text.clear()
+                        movieDescriptionEditText.text.clear()
+                        movieImageLinkEditText.text.clear()
+                        getMovie()
+                        Toast.makeText(context, "Pelicula añadida correctamente", Toast.LENGTH_SHORT).show()
+                    }
+                    .addOnFailureListener { e ->
+                        Toast.makeText(context, "Error al añadir Pelicula: ${e.message}", Toast.LENGTH_SHORT).show()
+                    }
+            } else {
+                Toast.makeText(context, "El precio debe ser un número válido", Toast.LENGTH_SHORT).show()
+            }
         } else {
             Toast.makeText(context, "Todos los campos son obligatorios", Toast.LENGTH_SHORT).show()
         }
     }
+
     private fun getMovie() {
         db.collection("movies").get()
             .addOnSuccessListener { documents ->
@@ -102,18 +104,26 @@ class AdminAddMovie : Fragment() {
 
     private fun onEditClick(movie: Movie) {
         movieNameEditText.setText(movie.movieName)
-        moviePriceEditText.setText(movie.moviePrice)
+        moviePriceEditText.setText(movie.moviePrice.toString())
         movieDescriptionEditText.setText(movie.movieDescription)
         movieImageLinkEditText.setText(movie.movieImg)
 
         btnAddMovie.setOnClickListener {
-            val updatedMovie = Movie(
+            val updatedMovieName = movieNameEditText.text.toString().trim()
+            val updatedMoviePriceText = moviePriceEditText.text.toString().trim()
+            val updatedMovieDescription = movieDescriptionEditText.text.toString().trim()
+            val updatedMovieImageLink = movieImageLinkEditText.text.toString().trim()
 
-                movieName = movieNameEditText.text.toString(),
-                moviePrice = moviePriceEditText.text.toString(),
-                movieDescription = movieDescriptionEditText.text.toString(),
-                movieImg = movieImageLinkEditText.text.toString(),
-            )
+            if (updatedMovieName.isNotEmpty() && updatedMoviePriceText.isNotEmpty() && updatedMovieDescription.isNotEmpty() && updatedMovieImageLink.isNotEmpty()) {
+                val updatedMoviePrice = updatedMoviePriceText.toDoubleOrNull()
+                if (updatedMoviePrice != null) {
+                    val updatedMovie = Movie(
+                        movieId = movie.movieId,
+                        movieName = updatedMovieName,
+                        moviePrice = updatedMoviePrice,
+                        movieDescription = updatedMovieDescription,
+                        movieImg = updatedMovieImageLink
+                    )
             db.collection("movies").document(movie.movieId).set(updatedMovie)
                 .addOnSuccessListener {
                     Toast.makeText(
@@ -132,6 +142,7 @@ class AdminAddMovie : Fragment() {
                 }
         }
     }
+        }}
 
         private fun onDeleteClick(movie: Movie) {
             db.collection("movies").document(movie.movieId).delete()

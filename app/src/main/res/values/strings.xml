@@ -4,6 +4,7 @@
     <string name="description_store_add">Crear tienda</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="description_img_cartelera">Imagen cartelera</string>
+    <string name="total_price_format">Total: S/. %.2f</string>
 
     <string-array name="genders_array">
         <item>Masculino</item>

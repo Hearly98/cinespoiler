@@ -23,6 +23,7 @@
 
         <ImageButton
             android:id="@+id/B5"
+            android:tag="B5"
             android:layout_width="36dp"
             android:layout_height="33dp"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -34,6 +35,7 @@
 
         <ImageButton
             android:id="@+id/B6"
+            android:tag="B6"
             android:layout_width="36dp"
             android:layout_height="33dp"
             app:layout_constraintBottom_toBottomOf="@+id/imageView"
@@ -45,6 +47,7 @@
 
         <ImageButton
             android:id="@+id/B4"
+            android:tag="B4"
             android:layout_width="36dp"
             android:layout_height="35dp"
             app:layout_constraintBottom_toBottomOf="@+id/imageView"
@@ -56,6 +59,7 @@
 
         <ImageButton
             android:id="@+id/B3"
+            android:tag="B3"
             android:layout_width="36dp"
             android:layout_height="33dp"
             app:layout_constraintBottom_toBottomOf="@+id/imageView"
@@ -67,6 +71,7 @@
 
         <ImageButton
             android:id="@+id/B2"
+            android:tag="B2"
             android:layout_width="40dp"
             android:layout_height="35dp"
             app:layout_constraintBottom_toBottomOf="@+id/imageView"
@@ -78,6 +83,7 @@
 
         <ImageButton
             android:id="@+id/B1"
+            android:tag="B1"
             android:layout_width="33dp"
             android:layout_height="33dp"
             android:visibility="visible"
@@ -90,6 +96,7 @@
 
         <ImageButton
             android:id="@+id/C2"
+            android:tag="C2"
             android:layout_width="36dp"
             android:layout_height="33dp"
             app:layout_constraintBottom_toBottomOf="@+id/imageView"
@@ -101,6 +108,7 @@
 
         <ImageButton
             android:id="@+id/C3"
+            android:tag="C3"
             android:layout_width="36dp"
             android:layout_height="33dp"
             app:layout_constraintBottom_toBottomOf="@+id/imageView"
@@ -112,6 +120,7 @@
 
         <ImageButton
             android:id="@+id/C4"
+            android:tag="C4"
             android:layout_width="36dp"
             android:layout_height="33dp"
             app:layout_constraintBottom_toBottomOf="@+id/imageView"
@@ -123,6 +132,7 @@
 
         <ImageButton
             android:id="@+id/C5"
+            android:tag="C5"
             android:layout_width="36dp"
             android:layout_height="33dp"
             app:layout_constraintBottom_toBottomOf="@+id/imageView"
@@ -134,6 +144,7 @@
 
         <ImageButton
             android:id="@+id/C6"
+            android:tag="C6"
             android:layout_width="36dp"
             android:layout_height="33dp"
             app:layout_constraintBottom_toBottomOf="@+id/imageView"
@@ -156,7 +167,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
         <Button
-            android:id="@+id/enviar"
+            android:id="@+id/btnPagar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="165dp"
@@ -171,6 +182,7 @@
 
         <ImageButton
             android:id="@+id/A1"
+            android:tag="A1"
             android:layout_width="36dp"
             android:layout_height="33dp"
             app:layout_constraintBottom_toBottomOf="@+id/imageView"
@@ -182,6 +194,7 @@
 
         <ImageButton
             android:id="@+id/A2"
+            android:tag="A2"
             android:layout_width="36dp"
             android:layout_height="33dp"
             app:layout_constraintBottom_toBottomOf="@+id/imageView"
@@ -193,6 +206,7 @@
 
         <ImageButton
             android:id="@+id/A3"
+            android:tag="A3"
             android:layout_width="36dp"
             android:layout_height="33dp"
             app:layout_constraintBottom_toBottomOf="@+id/imageView"
@@ -204,6 +218,7 @@
 
         <ImageButton
             android:id="@+id/A4"
+            android:tag="A4"
             android:layout_width="36dp"
             android:layout_height="33dp"
             app:layout_constraintBottom_toBottomOf="@+id/imageView"
@@ -215,6 +230,7 @@
 
         <ImageButton
             android:id="@+id/C1"
+            android:tag="C1"
             android:layout_width="36dp"
             android:layout_height="33dp"
             app:layout_constraintBottom_toBottomOf="@+id/imageView"
@@ -229,6 +245,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Nombre de la pelicula"
+            android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.109"
@@ -236,36 +253,40 @@
             app:layout_constraintTop_toBottomOf="@+id/imageView"
             app:layout_constraintVertical_bias="0.041" />
 
+
         <TextView
             android:id="@+id/tvButacaText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Butacas"
+            android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.083"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/imageView"
-            app:layout_constraintVertical_bias="0.269" />
-
+            app:layout_constraintVertical_bias="0.153" />
 
         <TextView
             android:id="@+id/tvButacaTotal"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
             android:text="Numero de las Butacas"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.309"
+            app:layout_constraintHorizontal_bias="0.318"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/imageView"
-            app:layout_constraintVertical_bias="0.269" />
+            app:layout_constraintVertical_bias="0.153" />
 
         <EditText
             android:id="@+id/etFechaCompra"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:ems="10"
+            android:focusable="false"
+            android:clickable="true"
             android:hint="Fecha de función"
             android:inputType="date"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -273,31 +294,27 @@
             app:layout_constraintHorizontal_bias="0.149"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/imageView"
-            app:layout_constraintVertical_bias="0.452" />
+            app:layout_constraintVertical_bias="0.278" />
 
         <TextView
             android:id="@+id/tvTotal"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Monto Total"
+            android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.089"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.851" />
+            app:layout_constraintVertical_bias="0.785" />
 
         <TextView
             android:id="@+id/tvMoviePriceButaca"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Precio de butaca"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.084"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.648" />
+            app:layout_constraintEnd_toEndOf="parent"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </FrameLayout>
